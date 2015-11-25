@@ -20,7 +20,8 @@ defmodule ThingServer.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", ThingServer do
-  #   pipe_through :api
-  # end
+  scope "/api", ThingServer do
+    pipe_through :api
+    resources "/things", ThingController, except: [:new, :edit]
+  end
 end
