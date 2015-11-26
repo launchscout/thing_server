@@ -34,6 +34,7 @@ defmodule ThingServer.Mixfile do
      {:postgrex, ">= 0.0.0"},
      {:phoenix_html, "~> 2.1"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
+     {:cors_plug, "~> 0.1.4"},
      {:cowboy, "~> 1.0"}]
   end
 end
