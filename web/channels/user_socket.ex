@@ -2,7 +2,7 @@ defmodule ThingServer.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "rooms:*", ThingServer.RoomChannel
+  channel "things:*", ThingServer.ThingChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

@@ -2,6 +2,8 @@ defmodule ThingServer.ThingController do
   use ThingServer.Web, :controller
 
   alias ThingServer.Thing
+  alias ThingServer.Endpoint
+  alias ThingServer.ThingView
 
   plug :scrub_params, "thing" when action in [:create, :update]
 
@@ -15,6 +17,8 @@ defmodule ThingServer.ThingController do
 
     case Repo.insert(changeset) do
       {:ok, thing} ->
+        things = Repo.all(Thing)
+        Endpoint.broadcast! "things:all", "change", ThingView.render("index.json", thing: things)
         conn
         |> put_status(:created)
         |> put_resp_header("location", thing_path(conn, :show, thing))
