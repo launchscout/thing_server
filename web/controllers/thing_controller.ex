@@ -18,7 +18,7 @@ defmodule ThingServer.ThingController do
     case Repo.insert(changeset) do
       {:ok, thing} ->
         things = Repo.all(Thing)
-        Endpoint.broadcast! "things:all", "change", ThingView.render("index.json", thing: things)
+        Endpoint.broadcast! "things:all", "change", ThingView.render("index.json", %{things: things})
         conn
         |> put_status(:created)
         |> put_resp_header("location", thing_path(conn, :show, thing))
